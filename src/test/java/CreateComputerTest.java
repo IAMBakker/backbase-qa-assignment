@@ -21,12 +21,11 @@ public class CreateComputerTest extends TestBase {
         .addComputer(computer);
 
         assertThat(homePage.getAlertMessageText())
-                .containsIgnoringCase(
-                        computer.name
-        ).containsIgnoringCase(
-                "Done!"
-        ).as("Alert Message should be displayed displaying Done! and the computer name");
-    }
+                .as("Alert Message should be displayed displaying Done! and the computer name")
+                .containsIgnoringCase(computer.name)
+                .containsIgnoringCase("Done!")
+                .containsIgnoringCase("has been created");
+        }
 
     @Test
     public void createComputerDateIntroducedInPastEdgeCase(){
@@ -37,12 +36,12 @@ public class CreateComputerTest extends TestBase {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         homePage.clickAddComputer()
                 .addComputer(computer);
-
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
+
     }
 
     @Test
@@ -56,10 +55,10 @@ public class CreateComputerTest extends TestBase {
                 .addComputer(computer);
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
     }
 
     @Test
@@ -74,10 +73,10 @@ public class CreateComputerTest extends TestBase {
                 .addComputer(computer);
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
     }
 
     @Test
@@ -92,10 +91,10 @@ public class CreateComputerTest extends TestBase {
                 .addComputer(computer);
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
     }
 
     @Test
@@ -108,10 +107,10 @@ public class CreateComputerTest extends TestBase {
                 .addComputer(computer);
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
     }
 
     @Test
@@ -125,9 +124,12 @@ public class CreateComputerTest extends TestBase {
 
         NewComputerPage newComputerPage = PageFactory.initElements(driver, NewComputerPage.class);
 
-        assertThat(newComputerPage.isOnHomePage()).isFalse();
+        assertThat(newComputerPage.isOnHomePage())
+                .as("We should not be redirected to the home page since our form has errors")
+                .isFalse();
 
-        assertThat(newComputerPage.nameFieldHasError()).isEqualTo(true);
+        assertThat(newComputerPage.nameFieldHasError())
+                .isEqualTo(true);
     }
 
     @Test
@@ -143,7 +145,9 @@ public class CreateComputerTest extends TestBase {
 
         NewComputerPage newComputerPage = PageFactory.initElements(driver, NewComputerPage.class);
 
-        assertThat(newComputerPage.isOnHomePage()).isFalse();
+        assertThat(newComputerPage.isOnHomePage())
+                .as("We should not be redirected to the home page since our form has errors")
+                .isFalse();
 
         assertThat(newComputerPage.dateIntroducedFieldHasError()).isEqualTo(true);
     }
@@ -161,7 +165,9 @@ public class CreateComputerTest extends TestBase {
 
         NewComputerPage newComputerPage = PageFactory.initElements(driver, NewComputerPage.class);
 
-        assertThat(newComputerPage.isOnHomePage()).isFalse();
+        assertThat(newComputerPage.isOnHomePage())
+                .as("We should not be redirected to the home page since our form has errors")
+                .isFalse();
 
         assertThat(newComputerPage.dateDiscontinuedFieldHasError()).isEqualTo(true);
     }
@@ -179,9 +185,9 @@ public class CreateComputerTest extends TestBase {
 
         // Asserting that we are able to do so, because computer names do not have to be unique
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(oldComputer.name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been created")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been created");
     }
 }

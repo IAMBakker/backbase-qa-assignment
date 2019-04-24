@@ -55,8 +55,10 @@ public class ReadComputerTest extends TestBase {
         .getListOfComputersDisplayed();
 
         computers.forEach(c -> {
-            assertThat(preparedComputers).contains(c.withParsedDates()).as("The filtered list does not contain " +
-                    "the computer created in our setup with dateStrings correctly displayed in format dd MMM yyyy");
+            assertThat(preparedComputers)
+                    .as("The filtered list does not contain the computer created in our setup with " +
+                            "dateStrings correctly displayed in format dd MMM yyyy")
+                    .contains(c.withParsedDates());
         });
     }
 
@@ -89,10 +91,12 @@ public class ReadComputerTest extends TestBase {
 
         List<Computer> listAfterSorting = homePage.getListOfComputersDisplayed();
 
-        assertThat(listAfterSorting).doesNotContainSequence(listBeforeSorting)
-                .as("The order of the computers in the list should be changed");
-        assertThat(listAfterSorting.get(0)).isEqualTo(computers.get(1))
-                .as("The first line of the table should match computer #2");
+        assertThat(listAfterSorting)
+                .as("The order of the computers in the list should be changed")
+                .doesNotContainSequence(listBeforeSorting);
+        assertThat(listAfterSorting.get(0))
+                .as("The first line of the table should match computer #2")
+                .isEqualTo(computers.get(1));
     }
 
     @Test
@@ -110,7 +114,8 @@ public class ReadComputerTest extends TestBase {
         // I could extend the Computer DTO in a new class where I override the equals
         // method with one that does match IDs. But it would make this test a bit messy
         // and the chance for it occuring is low enough that I have skipped out on this.
-        assertThat(computersOnPageTwo).doesNotContainAnyElementsOf(computersOnPageOne)
-                .as("Moving to the next page should display 10 new computers");
+        assertThat(computersOnPageTwo)
+                .as("Moving to the next page should display 10 new computers")
+                .doesNotContainAnyElementsOf(computersOnPageOne);
     }
 }

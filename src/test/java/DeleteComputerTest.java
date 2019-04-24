@@ -57,14 +57,15 @@ public class DeleteComputerTest extends TestBase {
         .deleteThisComputer();
 
         assertThat(homePage.getAlertMessageText())
-                .containsIgnoringCase("Done! Computer has been deleted")
-                .as("Alert message should display that the computer was deleted");
+                .as("Alert message should display that the computer was deleted")
+                .containsIgnoringCase("Done! Computer has been deleted");
 
         List<Computer> computersAfterDeletion = homePage.filterComputers("dtc"+ randomNumber)
                 .getListOfComputersDisplayed();
 
-        assertThat(computersAfterDeletion).doesNotContain(computers.get(0).withParsedDates())
-                .as("Computer should no longer show up after filtering, since it was deleted");
+        assertThat(computersAfterDeletion)
+                .as("Computer should no longer show up after filtering, since it was deleted")
+                .doesNotContain(computers.get(0).withParsedDates());
     }
 
     // Not entirely sure why I want to perform this test, but it also checks if we are able
@@ -77,13 +78,14 @@ public class DeleteComputerTest extends TestBase {
                 .deleteThisComputer();
 
         assertThat(homePage.getAlertMessageText())
-                .containsIgnoringCase("Done! Computer has been deleted")
-                .as("Alert message should display that the computer was deleted");
+                .as("Alert message should display that the computer was deleted")
+                .containsIgnoringCase("Done! Computer has been deleted");
 
         List<Computer> computersAfterDeletion = homePage.filterComputers("dtc"+ randomNumber)
                 .getListOfComputersDisplayed();
 
-        assertThat(computersAfterDeletion).doesNotContain(computers.get(3).withParsedDates())
-                .as("Computer should no longer show up after filtering, since it was deleted");
+        assertThat(computersAfterDeletion)
+                .as("Computer should no longer show up after filtering, since it was deleted")
+                .doesNotContain(computers.get(3).withParsedDates());
     }
 }

@@ -67,15 +67,16 @@ public class UpdateComputerTest extends TestBase {
         assertThat(returnedToHomePage).isTrue();
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(newComputerName)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been updated")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been updated");
 
         driver.get(baseURL + "/" + computerID);
-        assertThat(editPage.getDisplayedComputerData().name).isEqualTo(newComputerName)
+        assertThat(editPage.getDisplayedComputerData().name)
                 .as("After opening the edit screen again for this computer we can" +
-                        "check whether the new name was edited correctly.");
+                        "check whether the new name was edited correctly.")
+                .isEqualTo(newComputerName);
     }
 
     @Test
@@ -95,15 +96,16 @@ public class UpdateComputerTest extends TestBase {
         assertThat(returnedToHomePage).isTrue();
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computers.get(1).name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been updated")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been updated");
 
         driver.get(baseURL + "/" + computerID);
-        assertThat(editPage.getDisplayedComputerData().dateIntroduced).isEqualTo(newDateIntroduced)
+        assertThat(editPage.getDisplayedComputerData().dateIntroduced)
                 .as("After opening the edit screen again for this computer we can" +
-                        "check whether the date introduced was edited correctly.");
+                        "check whether the date introduced was edited correctly.")
+                .isEqualTo(newDateIntroduced);
     }
 
     @Test
@@ -123,15 +125,16 @@ public class UpdateComputerTest extends TestBase {
         assertThat(returnedToHomePage).isTrue();
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computers.get(2).name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been updated")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been updated");
 
         driver.get(baseURL + "/" + computerID);
-        assertThat(editPage.getDisplayedComputerData().dateDiscontinued).isEqualTo(newDateDiscontinued)
+        assertThat(editPage.getDisplayedComputerData().dateDiscontinued)
                 .as("After opening the edit screen again for this computer we can" +
-                        "check whether the date introduced was edited correctly.");
+                        "check whether the date introduced was edited correctly.")
+                .isEqualTo(newDateDiscontinued);
     }
 
     @Test
@@ -151,14 +154,15 @@ public class UpdateComputerTest extends TestBase {
         assertThat(returnedToHomePage).isTrue();
 
         assertThat(homePage.getAlertMessageText())
+                .as("Alert Message should be displayed displaying Done! and the computer name")
                 .containsIgnoringCase(computers.get(3).name)
                 .containsIgnoringCase("Done!")
-                .containsIgnoringCase("has been updated")
-                .as("Alert Message should be displayed displaying Done! and the computer name");
+                .containsIgnoringCase("has been updated");
 
         driver.get(baseURL + "/" + computerID);
-        assertThat(editPage.getDisplayedComputerData().company).isEqualTo(newCompany)
+        assertThat(editPage.getDisplayedComputerData().company)
                 .as("After opening the edit screen again for this computer we can" +
-                        "check whether the date introduced was edited correctly.");
+                        "check whether the date introduced was edited correctly.")
+                .isEqualTo(newCompany);
     }
 }
